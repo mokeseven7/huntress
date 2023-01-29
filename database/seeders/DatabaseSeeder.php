@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Agent;
+use App\Models\Account;
+use App\Models\IncidentReport;
+use App\Models\Organization;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +19,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $account = \App\Models\Account::factory()
+            ->has(
+                Organization::factory()->count(3)
+            )->has(
+                Agent::factory()->count(3)
+            )->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
+        $incident_report = IncidentReport::factory()->create();
     }
 }

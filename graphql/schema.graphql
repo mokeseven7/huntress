@@ -1,0 +1,78 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime
+  @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Query {
+  accounts: [Account!] @all
+  account(id: Int! @eq): Account @find
+  agents: [Agent!] @all
+  agent(id: Int! @eq): Agent @find
+  organizations: [Organization!] @all
+  organization(id: Int! @eq): Organization @find
+  incidentReports: [IncidentReport!] @all
+}
+
+type Account {
+  id: ID!
+  name: String!
+  subdomain: String!
+  status: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Agent {
+  id: ID!
+  
+  account: Account! @belongsTo
+  organization: Organization! @belongsTo
+  
+  version: String!
+  arch: String!
+  win_build_number: String!
+  domain_name: String!
+  hostname: String!
+  ipv4_address: String!
+  external_ip: String!
+  mac_addresses: String!
+  last_survey_at: String!
+  last_callback_at: String!
+  account_id: String!
+  organization_id: String!
+  platform: String!
+  os: String!
+  service_pack_major: String!
+  service_pack_minor: String!
+  tags: String!
+  os_major: String!
+  os_minor: String!
+  os_patch: String!
+  version_number: String!
+  edr_version: String!
+  os_build_version: String!
+  serial_number: String!
+}
+
+type Organization {
+  id: ID!
+  account: Account! @belongsTo
+  name: String!
+  key: String!
+}
+
+type IncidentReport {
+  id: ID!
+  account: Account! @hasOne
+  organization: Organization! @hasOne
+  agent: Agent! @hasOne
+  status: String!
+  summary: String!
+  body: String!
+  agent_id: String!
+  status_updated_at: DateTime!
+  sent_at: DateTime!
+  subject: String!
+  created_by_id: ID!
+  remediation_instructions: String!
+  indicator_counts: IndicatorCounts!
+}
