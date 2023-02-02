@@ -2,7 +2,7 @@
 
 The data models from the public huntress rest api rewritten as graphql api types using Laravel. 
 
-[GraphQL Explorer](http://143.198.70.148/graphiql). 
+[GraphQL Explorer](http://huntress.mike-mcgrath.com/graphiql). 
 
 [Commit Without Laravel Source In Diff](https://github.com/mokeseven7/huntress/commit/93cc14512ec9f110d60d8ddd156dccda0fc7abed)
 
